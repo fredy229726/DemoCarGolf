@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CarGolf</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+        <script type="text/javascript"> emailjs.init('7srjC1uhHZCJcAv9E')</script>
+        <style>
+            body{
+                font-family: Arial, sans-serif;
+                font-size: large;
+                margin: 0;
+                padding: 0;
+                background-image: url('https://i.pinimg.com/originals/f2/56/fa/f256fa53f4a71faeafdc7d83ece05548.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-position: center;
+            }
+
+            header{
+                color: white;
+                padding: 2%;
+                text-align: center;
+                display: ;
+                justify-content: ;
+                align-items: center;
+            }
+
+            nav ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+            }
+            
+            nav ul li {
+                display: inline;
+                margin-right: 2%;
+            }
+
+            nav ul li a {
+                color: yellow;
+                text-decoration: none;
+                transition: color 0.3s ease; /* Transición de color */
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            button{
+                position: relative;
+                background: #444;
+                color: #fff;
+                text-decoration: none;
+                text-transform: uppercase;
+                border: none;
+                letter-spacing: 0.1rem;
+                font-size: 1rem;
+                padding: 1rem 3rem;
+                transition: 0.2s;
+            }
+
+            button:hover {
+                letter-spacing: 0.2rem;
+                padding: 1.1rem 3.1rem;
+                background: var(--clr);
+                color: var(--clr);
+                /* box-shadow: 0 0 35px var(--clr); */
+                animation: box 3s infinite;
+            }
+
+            button::before {
+                content: "";
+                position: absolute;
+                inset: 2px;
+                background: #272822;
+            }
+
+            button span {
+                position: relative;
+                z-index: 1;
+            }
+            button i {
+                position: absolute;
+                inset: 0;
+                display: block;
+            }
+
+
+            button i::before {
+                content: "";
+                position: absolute;
+                width: 10px;
+                height: 2px;
+                left: 80%;
+                top: -2px;
+                border: 2px solid var(--clr);
+                background: #272822;
+                transition: 0.2s;
+            }
+
+            button:hover i::before {
+                width: 15px;
+                left: 20%;
+                animation: move 3s infinite;
+            }
+
+            button i::after {
+                content: "";
+                position: absolute;
+                width: 10px;
+                height: 2px;
+                left: 20%;
+                bottom: -2px;
+                border: 2px solid var(--clr);
+                background: #272822;
+                transition: 0.2s;
+            }
+
+            button:hover i::after {
+                width: 15px;
+                left: 80%;
+                animation: move 3s infinite;
+            }
+
+            @keyframes move {
+                0% {
+                    transform: translateX(0);
+                }
+                50% {
+
+                    transform: translateX(5px);
+                }
+                100% {
+                    transform: translateX(0);
+                }
+            }
+
+            @keyframes box {
+                0% {
+                    box-shadow: #27272c;
+                }
+                50% {
+                    box-shadow: 0 0 25px var(--clr);
+                }
+                100% {
+                    box-shadow: #27272c;
+                }
+            }
+
+            #logo {
+                flex: 1;
+                text-align: center;
+                position: absolute;
+            }
+
+            #logo img {
+                width: auto;
+                height: 90px;
+            }
+
+            .logo-equipo {
+                flex: 1;
+                text-align: center;
+            }
+  
+            .logo-equipo img {
+                width: auto;/* Ajusta el tamaño máximo de los logos según sea necesario */
+                height: 200px;
+                object-fit: cover;
+            }
+
+            main{
+                padding: 2%;
+                width: 100%;
+                height: 100%;
+            }
+
+            main p{
+                font-family: Arial;
+                color: #fff;
+                font-size: x-large;
+            }
+
+            section {
+                margin-bottom: 3%;
+                background-color: rgba(255, 255, 255, 0.8); /* Sección con opacidad */
+                border-radius: 10px;
+                padding: 2%;
+                box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease; /* Transición de transformación */
+            }
+
+            section:hover {
+                transform: translateY(-5px); /* Efecto de elevación al pasar el cursor */
+            }
+    
+            section h2 {
+                color: #333;
+                border-bottom: 2px solid #333;
+                padding-bottom: 1%;
+                margin-bottom: 2%;
+            }
+            
+            section p {
+                color: black;
+            }
+
+            footer{
+                color: white;
+                text-align: center;
+                padding: 1%;
+                bottom: 0;
+                width: 100%;
+                position: static;
+            }
+
+            #twitter, #facebook{
+                font-size: 2em;
+                background-color: #18191f;
+                color: #fff;
+                box-shadow: 2px 2px 2px #00000080, 10px 1px 12px #00000080, 2px 2px 10px #00000080, 2px 2px 3px #00000080, inset 2px 2px 10px #00000080, inset 2px 2px 10px #00000080, inset 2px 2px 10px #00000080, inset 2px 2px 10px #00000080;
+                border-radius: 29px;
+                padding: 11px 19px;
+                margin: 0 40px;
+                animation: animate 3s linear infinite;
+                text-shadow: 0 0 50px #0072ff, 0 0 100px #0072ff, 0 0 150px #0072ff, 0 0 200px #0072ff;
+            }
+
+            #facebook{
+                animation-delay: 0.7s;
+            }
+
+            @keyframes animate{
+                from {
+                    filter: hue-rotate(0deg);
+                }
+                to {
+                    filter: hue-rotate(360deg);
+                }
+            }
+
+            .partido {
+                display: flex;
+                align-items: center;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                margin-bottom: 10px;
+                padding: 10px;
+                width: 100%;
+                height: auto;
+            }
+
+            .field {
+                margin-bottom: 10px;
+            }
+
+            .field label {
+                display: block;
+                font-size: large;
+                color: #777;
+            }
+
+            .field input {
+                display: block;
+                min-width: 250px;
+                line-height: 1.5;
+                font-size: large;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="tel"],
+            input[type="time"],
+            input[type="file"] { /* Incluye también el campo de archivo */
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                font-size: 14px;
+                transition: border 0.3s ease, background-color 0.3s ease;
+            }
+
+            input[type="text"]:focus,
+            input[type="email"]:focus,
+            input[type="tel"]:focus,
+            input[type="time"]:focus,
+            input[type="file"]:focus {
+                border-color: #007bff;
+                outline: none;
+            }
+
+            input[type="file"]:hover {
+                background-color: #e1e1e1;
+            }
+
+            input[type="submit"] {
+                display: block;
+                padding: 6px 30px;
+                font-size: large;
+                background-color: #4460AA;
+                color: #fff;
+                border: none
+            }
+
+        </style>
+    </head>
+    <body>
+        <header>
+            <div id="logo">
+                <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjPLor9XU0gmoquh7eCM6XcnY3uet6v8VI3T2t17fg1xGmNEUFVP81qY6cWM1PNAKL2vR_WkAzx0vfhUpWb_8fLZ6d5NFwEpYn8a8xww792K8QTACyQ3i5fg0l6IfMrqGna7ejqlutrxmGyimL_7DnsXJjQcCyI5c-8ssx2f_kCLPoySy8PNHr7RWoUvq1M" alt="cargolf">
+            </div>
+            <div>
+                <h1 style="color: red; font-size: 60px;">CarGolf</h1>
+                <nav>
+                    <ul>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <section>
+                <div class="logo-equipo">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjPLor9XU0gmoquh7eCM6XcnY3uet6v8VI3T2t17fg1xGmNEUFVP81qY6cWM1PNAKL2vR_WkAzx0vfhUpWb_8fLZ6d5NFwEpYn8a8xww792K8QTACyQ3i5fg0l6IfMrqGna7ejqlutrxmGyimL_7DnsXJjQcCyI5c-8ssx2f_kCLPoySy8PNHr7RWoUvq1M" alt="cargolf">
+                </div>
+                <div>
+                    <h1>¡Bienvenido a CarGolf!</h1><br>
+
+                    <h1>Origen</h1>
+                    <p>Micro Empresa fundada en 2025 bajo el nombre de CarGolf con funcionamiento activo desde 2015.</p><br>
+
+                    <h1>¿A qué nos dedicamos?</h1>
+                    <p>Reparaciones menores a carritos de golf, trabajos sencillos de soldadura y de tapiceria.</p>
+                </div>
+            </section>
+            <section>
+                <h1>Pregunta o cotiza sin compromiso</h1><br>
+                <form id="form">
+                    <div class="field">
+                      <label for="nombre">Nombre</label>
+                      <input type="text" name="nombre" id="nombre">
+                    </div>
+                    <div class="field">
+                      <label for="correo">Correo electronico</label>
+                      <input type="email" name="correo" id="correo">
+                    </div>
+                    <div class="field">
+                      <label for="numero">Numero de celular</label>
+                      <input type="tel" name="numero" id="numero">
+                    </div>
+                    <div class="field">
+                      <label for="horario">¿En que hora se le puede contactar?</label>
+                      <input type="time" name="horario" id="horario">
+                    </div>
+                    <div class="field">
+                      <label for="comentarios">Comentarios</label>
+                      <input type="text" name="comentarios" id="comentarios">
+                    </div>
+                  
+                    <input type="submit" id="button" value="Send Email" >
+                  </form>
+            </section>
+            <section>
+                <h1>¿Quieres pagar un servicio realizado?</h1>
+                <p>Metodos de pago:</p>
+                <h3>Tarjeta</h3>
+                <p>Numero de Tarjeta</p>
+            </section>
+        </main>
+        <footer>
+            <p>Contactanos en: <a href=""><i class="fa fa-facebook-square" id="facebook"></i></a></p>
+        </footer>
+
+        <script>
+            const btn = document.getElementById('button');
+
+            document.getElementById('form')
+            .addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                btn.value = 'Enviando...';
+
+                const serviceID = 'default_service';
+                const templateID = 'template_9c24jbl';
+
+                emailjs.sendForm(serviceID, templateID, this)
+                .then(() => {
+                    btn.value = 'Send Email';
+                    alert('¡Formulario Enviado!');
+                }, (err) => {
+                    btn.value = 'Send Email';
+                    alert(JSON.stringify(err));
+                });
+            });
+        </script>
+        
+    </body>
+</html>
